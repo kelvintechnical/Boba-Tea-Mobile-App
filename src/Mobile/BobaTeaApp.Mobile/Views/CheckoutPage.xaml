@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BobaTeaApp.Mobile.Views.CheckoutPage"
+             Title="Checkout">
+    <ScrollView>
+        <VerticalStackLayout Padding="24" Spacing="12">
+            <Entry Placeholder="Pickup name" Text="{Binding PickupName}" />
+            <Editor Placeholder="Notes" HeightRequest="100" Text="{Binding Notes}" />
+            <CollectionView ItemsSource="{Binding Items}" SelectionMode="None">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid ColumnDefinitions="*,Auto">
+                            <Label Text="{Binding Name}" />
+                            <Label Grid.Column="1" Text="{Binding LineTotal, StringFormat='${0:F2}'}" />
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+            <Label Text="{Binding Tax, StringFormat='Tax: ${0:F2}'}" />
+            <Label Text="{Binding Total, StringFormat='Total: ${0:F2}'}" FontAttributes="Bold" FontSize="22" />
+            <Button Text="Place order" Command="{Binding SubmitCommand}" />
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

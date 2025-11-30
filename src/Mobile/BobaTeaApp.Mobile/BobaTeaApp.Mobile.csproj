@@ -1,0 +1,34 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFrameworks>net8.0-android;net8.0-ios;net8.0-maccatalyst</TargetFrameworks>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>BobaTeaApp.Mobile</RootNamespace>
+    <UseMaui>true</UseMaui>
+    <SingleProject>true</SingleProject>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <ApplicationTitle>Bloom Boba</ApplicationTitle>
+    <ApplicationId>com.bloom.boba</ApplicationId>
+    <ApplicationVersion>1.0.0</ApplicationVersion>
+    <SupportedOSPlatformVersion Condition=" '$(TargetFramework)' == 'net8.0-maccatalyst' ">13.1</SupportedOSPlatformVersion>
+    <SupportedOSPlatformVersion Condition=" '$(TargetFramework)' == 'net8.0-ios' ">14.2</SupportedOSPlatformVersion>
+    <SupportedOSPlatformVersion Condition=" '$(TargetFramework)' == 'net8.0-android' ">24.0</SupportedOSPlatformVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2" />
+    <PackageReference Include="Refit.HttpClientFactory" Version="7.2.112" />
+    <PackageReference Include="Plugin.Maui.CalendarStore" Version="1.0.4" />
+    <PackageReference Include="FirebaseAdmin" Version="3.4.0" />
+    <PackageReference Include="Stripe.net" Version="48.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="../../Shared/BobaTeaApp.Shared/BobaTeaApp.Shared.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <MauiFont Include="Resources/Fonts/*.ttf" Alias="*" />
+    <MauiImage Include="Resources/Images/*.png" />
+  </ItemGroup>
+</Project>

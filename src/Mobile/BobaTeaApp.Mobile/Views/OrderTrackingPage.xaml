@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BobaTeaApp.Mobile.Views.OrderTrackingPage"
+             Title="Track Order">
+    <VerticalStackLayout Padding="24" Spacing="12">
+        <Entry Placeholder="Order number" Text="{Binding OrderNumber}" />
+        <Button Text="Track" Command="{Binding TrackCommand}" />
+        <Frame BackgroundColor="#FFF" Padding="16" CornerRadius="16">
+            <Label Text="{Binding Status.Status}" FontSize="22" FontAttributes="Bold" />
+            <Label Text="{Binding Status.Message}" />
+            <Label Text="{Binding Status.EstimatedReadyTime, StringFormat='ETA: {0:t}'}" />
+        </Frame>
+    </VerticalStackLayout>
+</ContentPage>

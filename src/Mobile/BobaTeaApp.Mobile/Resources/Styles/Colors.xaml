@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2009/xaml">
+    <Color x:Key="PrimaryColor">#713C12</Color>
+    <Color x:Key="SecondaryColor">#FFD89C</Color>
+    <Color x:Key="NeutralColor">#2D1E12</Color>
+</ResourceDictionary>
