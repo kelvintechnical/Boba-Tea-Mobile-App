@@ -26,6 +26,7 @@ public static class ServiceCollectionExtensions
             options.SignIn.RequireConfirmedEmail = false;
         })
         .AddRoles<IdentityRole<Guid>>()
+        .AddSignInManager()
         .AddEntityFrameworkStores<ApplicationDbContext>();
 
         return services;

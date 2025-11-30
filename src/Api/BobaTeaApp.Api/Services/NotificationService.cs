@@ -14,4 +14,10 @@ public sealed class NotificationService
     {
         return Task.CompletedTask;
     }
+
+    public Task SendReceiptEmailAsync(string email, OrderDetailDto order)
+    {
+        // Wire up SendGrid or SMTP provider here.
+        return Task.CompletedTask;
+    }
 }

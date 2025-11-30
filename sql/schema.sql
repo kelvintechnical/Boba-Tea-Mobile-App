@@ -1,0 +1,105 @@
+-- Bloom Boba SQL Server schema
+
+CREATE TABLE ProductCategories (
+    Id UNIQUEIDENTIFIER PRIMARY KEY,
+    Name NVARCHAR(120) NOT NULL,
+    Description NVARCHAR(512) NULL,
+    HeroImageUrl NVARCHAR(256) NULL,
+    DisplayOrder INT NOT NULL DEFAULT 0
+);
+
+CREATE TABLE Products (
+    Id UNIQUEIDENTIFIER PRIMARY KEY,
+    CategoryId UNIQUEIDENTIFIER NOT NULL REFERENCES ProductCategories(Id),
+    Name NVARCHAR(160) NOT NULL,
+    Description NVARCHAR(512) NULL,
+    BasePrice DECIMAL(10,2) NOT NULL,
+    ImageUrl NVARCHAR(256) NULL,
+    IsAvailable BIT NOT NULL DEFAULT 1,
+    IsFeatured BIT NOT NULL DEFAULT 0,
+    Calories DECIMAL(6,2) NULL
+);
+
+CREATE TABLE ProductOptions (
+    Id UNIQUEIDENTIFIER PRIMARY KEY,
+    ProductId UNIQUEIDENTIFIER NOT NULL REFERENCES Products(Id),
+    GroupName NVARCHAR(80) NOT NULL,
+    Label NVARCHAR(80) NOT NULL,
+    AdditionalPrice DECIMAL(10,2) NOT NULL DEFAULT 0,
+    IsDefault BIT NOT NULL DEFAULT 0
+);
+
+CREATE TABLE AspNetUsers (
+    Id UNIQUEIDENTIFIER PRIMARY KEY,
+    FullName NVARCHAR(160) NULL,
+    AvatarUrl NVARCHAR(256) NULL,
+    CreatedAt DATETIMEOFFSET NOT NULL DEFAULT SYSDATETIMEOFFSET(),
+    UserName NVARCHAR(256) NULL,
+    NormalizedUserName NVARCHAR(256) NULL,
+    Email NVARCHAR(256) NULL,
+    NormalizedEmail NVARCHAR(256) NULL,
+    EmailConfirmed BIT NOT NULL DEFAULT 0,
+    PasswordHash NVARCHAR(MAX) NULL,
+    SecurityStamp NVARCHAR(256) NULL,
+    ConcurrencyStamp NVARCHAR(256) NULL,
+    PhoneNumber NVARCHAR(40) NULL,
+    PhoneNumberConfirmed BIT NOT NULL DEFAULT 0,
+    TwoFactorEnabled BIT NOT NULL DEFAULT 0,
+    LockoutEnd DATETIMEOFFSET NULL,
+    LockoutEnabled BIT NOT NULL DEFAULT 1,
+    AccessFailedCount INT NOT NULL DEFAULT 0
+);
+
+-- Additional ASP.NET Identity tables (Roles, Claims, Logins, etc.) can be scaffolded via EF Core migrations.
+
+CREATE TABLE Orders (
+    Id UNIQUEIDENTIFIER PRIMARY KEY,
+    UserId UNIQUEIDENTIFIER NOT NULL REFERENCES AspNetUsers(Id),
+    OrderNumber NVARCHAR(32) NOT NULL,
+    Status INT NOT NULL,
+    PaymentStatus INT NOT NULL,
+    Subtotal DECIMAL(10,2) NOT NULL,
+    Tax DECIMAL(10,2) NOT NULL,
+    Total DECIMAL(10,2) NOT NULL,
+    Notes NVARCHAR(512) NULL,
+    PickupName NVARCHAR(120) NULL,
+    CreatedAt DATETIMEOFFSET NOT NULL DEFAULT SYSDATETIMEOFFSET(),
+    EstimatedReadyTime DATETIMEOFFSET NULL
+);
+
+CREATE TABLE OrderItems (
+    Id UNIQUEIDENTIFIER PRIMARY KEY,
+    OrderId UNIQUEIDENTIFIER NOT NULL REFERENCES Orders(Id),
+    ProductId UNIQUEIDENTIFIER NOT NULL REFERENCES Products(Id),
+    ProductName NVARCHAR(160) NOT NULL,
+    UnitPrice DECIMAL(10,2) NOT NULL,
+    Quantity INT NOT NULL,
+    SelectedOptions NVARCHAR(256) NULL,
+    LineTotal DECIMAL(10,2) NOT NULL
+);
+
+CREATE TABLE PaymentMethods (
+    Id UNIQUEIDENTIFIER PRIMARY KEY,
+    UserId UNIQUEIDENTIFIER NOT NULL REFERENCES AspNetUsers(Id),
+    Provider NVARCHAR(80) NOT NULL,
+    MaskedCardNumber NVARCHAR(32) NOT NULL,
+    Token NVARCHAR(256) NOT NULL,
+    ExpMonth INT NOT NULL,
+    ExpYear INT NOT NULL,
+    IsDefault BIT NOT NULL DEFAULT 0
+);
+
+CREATE TABLE UserFavorites (
+    Id UNIQUEIDENTIFIER PRIMARY KEY,
+    UserId UNIQUEIDENTIFIER NOT NULL REFERENCES AspNetUsers(Id),
+    ProductId UNIQUEIDENTIFIER NOT NULL REFERENCES Products(Id),
+    FavoritedAt DATETIMEOFFSET NOT NULL DEFAULT SYSDATETIMEOFFSET(),
+    CONSTRAINT UX_UserFavorite UNIQUE (UserId, ProductId)
+);
+
+CREATE TABLE TaxRates (
+    Id UNIQUEIDENTIFIER PRIMARY KEY,
+    Country NVARCHAR(80) NOT NULL,
+    Region NVARCHAR(80) NOT NULL,
+    Rate DECIMAL(5,4) NOT NULL
+);

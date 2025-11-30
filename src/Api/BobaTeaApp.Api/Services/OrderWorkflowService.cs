@@ -56,6 +56,8 @@ public sealed class OrderWorkflowService
 
         var dto = MapOrder(order);
         await _notificationService.SendOrderPlacedAsync(order.UserId, dto);
+        var user = await _dbContext.Users.FirstOrDefaultAsync(u => u.Id == userId, cancellationToken);
+        await _notificationService.SendReceiptEmailAsync(user?.Email ?? string.Empty, dto);
         return dto;
     }
 
