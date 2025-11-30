@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BobaTeaApp.Mobile.Controls.LoadingOverlay"
+             x:Name="LoadingOverlayControl">
+    <Grid IsVisible="{Binding IsLoading, Source={x:Reference LoadingOverlayControl}}"
+          BackgroundColor="#80000000"
+          InputTransparent="False">
+
+        <Frame BackgroundColor="White"
+               CornerRadius="12"
+               Padding="30"
+               HorizontalOptions="Center"
+               VerticalOptions="Center"
+               HasShadow="True">
+
+            <VerticalStackLayout Spacing="15">
+                <ActivityIndicator IsRunning="True"
+                                 Color="{StaticResource Primary}"
+                                 WidthRequest="40"
+                                 HeightRequest="40"
+                                 HorizontalOptions="Center"/>
+
+                <Label Text="{Binding LoadingText, Source={x:Reference LoadingOverlayControl}}"
+                       FontSize="14"
+                       TextColor="{StaticResource Gray900}"
+                       HorizontalOptions="Center"/>
+            </VerticalStackLayout>
+
+        </Frame>
+    </Grid>
+</ContentView>

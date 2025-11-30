@@ -3,6 +3,7 @@ using BobaTeaApp.Mobile.Services;
 using BobaTeaApp.Mobile.ViewModels;
 using BobaTeaApp.Mobile.Views;
 using BobaTeaApp.Shared.Configurations;
+using CommunityToolkit.Maui;
 using CommunityToolkit.Mvvm.DependencyInjection;
 
 namespace BobaTeaApp.Mobile;
@@ -12,7 +13,9 @@ public static class MauiProgram
     public static MauiApp CreateMauiApp()
     {
         var builder = MauiApp.CreateBuilder();
-        builder.UseMauiApp<App>();
+        builder
+            .UseMauiApp<App>()
+            .UseMauiCommunityToolkit();
 
         builder.Services.AddSingleton<AppShell>();
         builder.Services.AddSingleton<EnvironmentSettings>();
@@ -26,6 +29,7 @@ public static class MauiProgram
             client.Timeout = TimeSpan.FromSeconds(30);
         });
 
+        builder.Services.AddSingleton<IToastService, ToastService>();
         builder.Services.AddSingleton<SecureStorageService>();
         builder.Services.AddSingleton<AuthService>();
         builder.Services.AddSingleton<MenuService>();

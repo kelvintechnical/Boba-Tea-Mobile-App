@@ -1,6 +1,7 @@
 using System.Collections.ObjectModel;
 using BobaTeaApp.Mobile.Services;
 using BobaTeaApp.Shared.DTOs;
+using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 
 namespace BobaTeaApp.Mobile.ViewModels;
@@ -14,11 +15,25 @@ public partial class CartViewModel : BaseViewModel
     [ObservableProperty]
     private decimal _subtotal;
 
-    public CartViewModel(CartService cartService)
+    [ObservableProperty]
+    private bool _isEmpty;
+
+    public CartViewModel(CartService cartService, IToastService toastService) : base(toastService)
     {
         _cartService = cartService;
-        _cartService.CartChanged += (_, _) => CalculateSubtotal();
+        _cartService.CartChanged += OnCartChanged;
+        UpdateCartState();
+    }
+
+    private void OnCartChanged(object? sender, EventArgs e)
+    {
         CalculateSubtotal();
+        UpdateCartState();
+    }
+
+    private void UpdateCartState()
+    {
+        IsEmpty = !_cartService.Items.Any();
     }
 
     private void CalculateSubtotal()
@@ -27,18 +42,44 @@ public partial class CartViewModel : BaseViewModel
     }
 
     [RelayCommand]
-    private void Increment(CartItemDto item) =>
+    private async Task IncrementAsync(CartItemDto item)
+    {
         _cartService.UpdateQuantity(item.ProductId, item.Quantity + 1);
+        if (ToastService != null)
+            await ToastService.ShowInfoAsync("Item quantity updated");
+    }
 
     [RelayCommand]
-    private void Decrement(CartItemDto item) =>
+    private async Task DecrementAsync(CartItemDto item)
+    {
         _cartService.UpdateQuantity(item.ProductId, item.Quantity - 1);
+        if (ToastService != null)
+            await ToastService.ShowInfoAsync("Item quantity updated");
+    }
 
     [RelayCommand]
-    private void Remove(CartItemDto item) =>
+    private async Task RemoveAsync(CartItemDto item)
+    {
         _cartService.UpdateQuantity(item.ProductId, 0);
+        if (ToastService != null)
+            await ToastService.ShowSuccessAsync("Item removed from cart");
+    }
 
     [RelayCommand]
-    private Task NavigateCheckoutAsync() =>
-        Shell.Current.GoToAsync(nameof(Views.CheckoutPage));
+    private async Task NavigateCheckoutAsync()
+    {
+        if (IsEmpty)
+        {
+            if (ToastService != null)
+                await ToastService.ShowErrorAsync("Your cart is empty");
+            return;
+        }
+        await Shell.Current.GoToAsync(nameof(Views.CheckoutPage));
+    }
+
+    [RelayCommand]
+    private async Task NavigateToMenuAsync()
+    {
+        await Shell.Current.GoToAsync("//MenuPage");
+    }
 }

@@ -1,6 +1,7 @@
 using System.Collections.ObjectModel;
 using BobaTeaApp.Mobile.Services;
 using BobaTeaApp.Shared.DTOs;
+using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 
 namespace BobaTeaApp.Mobile.ViewModels;
@@ -12,16 +13,43 @@ public partial class MenuViewModel : BaseViewModel
 
     public ObservableCollection<MenuCategoryDto> Categories { get; } = new();
 
-    public MenuViewModel(MenuService menuService, CartService cartService)
+    [ObservableProperty]
+    private bool _isRefreshing;
+
+    public MenuViewModel(MenuService menuService, CartService cartService, IToastService toastService)
+        : base(toastService)
     {
         _menuService = menuService;
         _cartService = cartService;
     }
 
     [RelayCommand]
-    private Task InitializeAsync() => ExecuteSafeAsync(async () =>
+    private Task InitializeAsync() => ExecuteSafeAsync(
+        async () =>
+        {
+            if (Categories.Any()) return;
+            await LoadMenuAsync();
+        },
+        loadingMessage: "Loading menu...",
+        showErrorToast: true
+    );
+
+    [RelayCommand]
+    private async Task RefreshAsync()
     {
-        if (Categories.Any()) return;
+        IsRefreshing = true;
+        try
+        {
+            await LoadMenuAsync();
+        }
+        finally
+        {
+            IsRefreshing = false;
+        }
+    }
+
+    private async Task LoadMenuAsync()
+    {
         var categories = await _menuService.GetMenuAsync();
         MainThread.BeginInvokeOnMainThread(() =>
         {
@@ -31,10 +59,10 @@ public partial class MenuViewModel : BaseViewModel
                 Categories.Add(category);
             }
         });
-    });
+    }
 
     [RelayCommand]
-    private void AddToCart(ProductDto product)
+    private async Task AddToCartAsync(ProductDto product)
     {
         var item = new CartItemDto(
             product.Id,
@@ -48,5 +76,8 @@ public partial class MenuViewModel : BaseViewModel
             null);
 
         _cartService.AddOrUpdate(item);
+
+        if (ToastService != null)
+            await ToastService.ShowSuccessAsync($"{product.Name} added to cart");
     }
 }
