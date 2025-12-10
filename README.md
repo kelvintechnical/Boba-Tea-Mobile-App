@@ -423,20 +423,28 @@ BobaTeaApp/
 
 ### Backend Setup
 
-1. **Update Configuration**
+1. **Update Development Config**
+   - Edit `src/Api/BobaTeaApp.Api/appsettings.Development.json`
+   - The default connection string targets `Server=localhost,1433` with the `sa` login used by the SQL Edge container below.
+   - Replace the placeholder JWT signing key, Stripe keys, and notification secrets with your own values.
+
+2. **Start Local SQL Server (Azure SQL Edge)**
    ```bash
-   cd src/Api/BobaTeaApp.Api
-   cp appsettings.json appsettings.Development.json
-   # Edit appsettings.Development.json with real values
+   docker run -d --name bobatea-sql \
+     --network host \
+     -e 'ACCEPT_EULA=Y' \
+     -e 'MSSQL_SA_PASSWORD=StrongP@ssw0rd!' \
+     mcr.microsoft.com/azure-sql-edge
+   ```
+   - Stop with `docker stop bobatea-sql` and remove with `docker rm bobatea-sql` when finished.
+
+3. **Create Database**
+   ```bash
+   dotnet ef migrations add InitialCreate -p src/Api/BobaTeaApp.Api -s src/Api/BobaTeaApp.Api
+   dotnet ef database update -p src/Api/BobaTeaApp.Api -s src/Api/BobaTeaApp.Api
    ```
 
-2. **Create Database**
-   ```bash
-   dotnet ef migrations add InitialCreate
-   dotnet ef database update
-   ```
-
-3. **Run API**
+4. **Run API**
    ```bash
    dotnet run
    ```
