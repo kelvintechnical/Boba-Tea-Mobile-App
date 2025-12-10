@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("BobaTeaApp.Api")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+139b8efb921ed57b32d7ea80e6bf26d355b265be")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+330e1a28eab6e0ab87fc557291b38a38f78a4699")]
 [assembly: System.Reflection.AssemblyProductAttribute("BobaTeaApp.Api")]
 [assembly: System.Reflection.AssemblyTitleAttribute("BobaTeaApp.Api")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
