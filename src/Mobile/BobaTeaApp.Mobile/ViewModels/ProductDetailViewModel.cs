@@ -41,6 +41,7 @@ public partial class ProductDetailViewModel : BaseViewModel
             "Regular",
             "100%",
             "Standard",
+            null,
             Product.BasePrice * Quantity,
             null);
 

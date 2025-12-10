@@ -1,0 +1,153 @@
+{
+  "format": 1,
+  "restore": {
+    "/workspace/src/Api/BobaTeaApp.Api/BobaTeaApp.Api.csproj": {}
+  },
+  "projects": {
+    "/workspace/src/Api/BobaTeaApp.Api/BobaTeaApp.Api.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/workspace/src/Api/BobaTeaApp.Api/BobaTeaApp.Api.csproj",
+        "projectName": "BobaTeaApp.Api",
+        "projectPath": "/workspace/src/Api/BobaTeaApp.Api/BobaTeaApp.Api.csproj",
+        "packagesPath": "/home/ubuntu/.nuget/packages/",
+        "outputPath": "/workspace/src/Api/BobaTeaApp.Api/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/ubuntu/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "/workspace/src/Shared/BobaTeaApp.Shared/BobaTeaApp.Shared.csproj": {
+                "projectPath": "/workspace/src/Shared/BobaTeaApp.Shared/BobaTeaApp.Shared.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[8.0.0, )"
+            },
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[8.0.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[8.0.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[8.0.0, )"
+            },
+            "Serilog.AspNetCore": {
+              "target": "Package",
+              "version": "[8.0.1, )"
+            },
+            "Stripe.net": {
+              "target": "Package",
+              "version": "[48.0.0, )"
+            },
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[6.5.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/8.0.122/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/workspace/src/Shared/BobaTeaApp.Shared/BobaTeaApp.Shared.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/workspace/src/Shared/BobaTeaApp.Shared/BobaTeaApp.Shared.csproj",
+        "projectName": "BobaTeaApp.Shared",
+        "projectPath": "/workspace/src/Shared/BobaTeaApp.Shared/BobaTeaApp.Shared.csproj",
+        "packagesPath": "/home/ubuntu/.nuget/packages/",
+        "outputPath": "/workspace/src/Shared/BobaTeaApp.Shared/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/ubuntu/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/8.0.122/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

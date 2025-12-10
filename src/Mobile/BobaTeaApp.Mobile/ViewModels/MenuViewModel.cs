@@ -72,6 +72,7 @@ public partial class MenuViewModel : BaseViewModel
             "Regular",
             "100%",
             "Standard",
+            null,
             product.BasePrice,
             null);
 

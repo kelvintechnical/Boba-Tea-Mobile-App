@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "LU20Ez/OCBWXDd+MlcdXjTrqGFSHZxa3xWaSLlCrsUk=",
+  "Source": "BobaTeaApp.Api",
+  "BasePath": "_content/BobaTeaApp.Api",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

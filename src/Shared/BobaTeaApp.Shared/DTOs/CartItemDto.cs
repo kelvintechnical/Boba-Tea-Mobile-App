@@ -8,5 +8,6 @@ public sealed record CartItemDto(
     string? SelectedSize,
     string? SweetnessLevel,
     string? IceLevel,
+    string? SelectedOptions,
     decimal LineTotal,
     IReadOnlyDictionary<string, string>? Customizations);
