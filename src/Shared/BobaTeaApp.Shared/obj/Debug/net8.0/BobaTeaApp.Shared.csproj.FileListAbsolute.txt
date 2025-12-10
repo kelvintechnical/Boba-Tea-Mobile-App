@@ -1,0 +1,14 @@
+/workspace/src/Shared/BobaTeaApp.Shared/bin/Debug/net8.0/BobaTeaApp.Shared.deps.json
+/workspace/src/Shared/BobaTeaApp.Shared/bin/Debug/net8.0/BobaTeaApp.Shared.dll
+/workspace/src/Shared/BobaTeaApp.Shared/bin/Debug/net8.0/BobaTeaApp.Shared.pdb
+/workspace/src/Shared/BobaTeaApp.Shared/bin/Debug/net8.0/BobaTeaApp.Shared.xml
+/workspace/src/Shared/BobaTeaApp.Shared/obj/Debug/net8.0/BobaTeaApp.Shared.GeneratedMSBuildEditorConfig.editorconfig
+/workspace/src/Shared/BobaTeaApp.Shared/obj/Debug/net8.0/BobaTeaApp.Shared.AssemblyInfoInputs.cache
+/workspace/src/Shared/BobaTeaApp.Shared/obj/Debug/net8.0/BobaTeaApp.Shared.AssemblyInfo.cs
+/workspace/src/Shared/BobaTeaApp.Shared/obj/Debug/net8.0/BobaTeaApp.Shared.csproj.CoreCompileInputs.cache
+/workspace/src/Shared/BobaTeaApp.Shared/obj/Debug/net8.0/BobaTeaApp.Shared.sourcelink.json
+/workspace/src/Shared/BobaTeaApp.Shared/obj/Debug/net8.0/BobaTeaApp.Shared.dll
+/workspace/src/Shared/BobaTeaApp.Shared/obj/Debug/net8.0/refint/BobaTeaApp.Shared.dll
+/workspace/src/Shared/BobaTeaApp.Shared/obj/Debug/net8.0/BobaTeaApp.Shared.xml
+/workspace/src/Shared/BobaTeaApp.Shared/obj/Debug/net8.0/BobaTeaApp.Shared.pdb
+/workspace/src/Shared/BobaTeaApp.Shared/obj/Debug/net8.0/ref/BobaTeaApp.Shared.dll

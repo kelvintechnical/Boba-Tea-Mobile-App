@@ -1,4 +1,5 @@
 using BobaTeaApp.Api.Entities;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
@@ -41,5 +42,41 @@ public sealed class ApplicationDbContext : IdentityDbContext<ApplicationUser, Id
         builder.Entity<UserFavoriteEntity>()
             .HasIndex(f => new { f.UserId, f.ProductId })
             .IsUnique();
+
+        builder.Entity<OrderEntity>()
+            .Property(o => o.Subtotal)
+            .HasPrecision(18, 2);
+
+        builder.Entity<OrderEntity>()
+            .Property(o => o.Tax)
+            .HasPrecision(18, 2);
+
+        builder.Entity<OrderEntity>()
+            .Property(o => o.Total)
+            .HasPrecision(18, 2);
+
+        builder.Entity<OrderItemEntity>()
+            .Property(i => i.UnitPrice)
+            .HasPrecision(18, 2);
+
+        builder.Entity<OrderItemEntity>()
+            .Property(i => i.LineTotal)
+            .HasPrecision(18, 2);
+
+        builder.Entity<ProductEntity>()
+            .Property(p => p.BasePrice)
+            .HasPrecision(18, 2);
+
+        builder.Entity<ProductEntity>()
+            .Property(p => p.Calories)
+                .HasPrecision(6, 2);
+
+        builder.Entity<ProductOptionEntity>()
+            .Property(o => o.AdditionalPrice)
+            .HasPrecision(18, 2);
+
+        builder.Entity<TaxRateEntity>()
+            .Property(t => t.Rate)
+            .HasPrecision(5, 4);
     }
 }

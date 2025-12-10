@@ -8,7 +8,6 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
-using Stripe;
 
 namespace BobaTeaApp.Api.Extensions;
 
@@ -67,8 +66,8 @@ public static class ServiceCollectionExtensions
         services.AddSingleton(sp =>
         {
             var options = sp.GetRequiredService<IOptions<StripeOptions>>().Value;
-            StripeConfiguration.ApiKey = options.SecretKey;
-            return StripeConfiguration.ApiKey;
+            Stripe.StripeConfiguration.ApiKey = options.SecretKey;
+            return Stripe.StripeConfiguration.ApiKey;
         });
 
         services.AddScoped<PaymentService>();
