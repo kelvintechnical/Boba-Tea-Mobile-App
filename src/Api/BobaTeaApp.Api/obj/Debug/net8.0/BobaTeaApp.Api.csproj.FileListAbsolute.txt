@@ -141,3 +141,4 @@
 /workspace/src/Api/BobaTeaApp.Api/obj/Debug/net8.0/BobaTeaApp.Api.pdb
 /workspace/src/Api/BobaTeaApp.Api/obj/Debug/net8.0/BobaTeaApp.Api.genruntimeconfig.cache
 /workspace/src/Api/BobaTeaApp.Api/obj/Debug/net8.0/ref/BobaTeaApp.Api.dll
+/workspace/src/Api/BobaTeaApp.Api/bin/Debug/net8.0/appsettings.Development.json
